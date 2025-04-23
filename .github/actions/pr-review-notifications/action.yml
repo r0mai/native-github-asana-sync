@@ -14,7 +14,7 @@ runs:
   using: "composite"
   steps:
     - name: Find Asana Task in PR description
-      uses: ./native-github-asana-sync
+      uses: .
       id: find-asana-task-id
       with:
         action: 'find-asana-task-id'
@@ -22,7 +22,7 @@ runs:
 
     - name: Add Approved Comment to Asana Task
       if: github.event.review.state == 'approved'      
-      uses: ./native-github-asana-sync
+      uses: .
       id: post-comment-pr-approved
       with:
         action: 'post-comment-asana-task'
@@ -33,7 +33,7 @@ runs:
 
     - name: Add Changes Requested Comment to Asana Task
       if: github.event.review.state == 'changes_requested'
-      uses: ./native-github-asana-sync
+      uses: .
       id: post-comment-pr-changes-requested
       with:
         action: 'post-comment-asana-task'
@@ -44,7 +44,7 @@ runs:
 
     - name: Add Dismissed Comment to Asana Task
       if: github.event.review.state == 'dismissed'
-      uses: ./native-github-asana-sync
+      uses: .
       id: post-comment-pr-dismissed
       with:
         action: 'post-comment-asana-task'
